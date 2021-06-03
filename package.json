@@ -4,14 +4,14 @@
   "description": "To-Do app using Redux",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tanishkul/To-Do-App.git"
+    "url": "git+https://github.com/tanishkul/to-do-app.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tanishkul/To-Do-App/issues"
+    "url": "https://github.com/tanishkul/to-do-app/issues"
   },
-  "homepage": "https://github.com/tanishkul/To-Do-App#readme",
+  "homepage": "https://github.com/tanishkul/to-do-app#readme",
   "dependencies": {
     "@apollo/client": "3.1.5",
     "@apollo/react-hooks": "3.1.5",
