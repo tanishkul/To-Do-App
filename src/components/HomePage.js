@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { TextareaAutosize } from '@material-ui/core';
 
 import store from '../store';
 // import { withSnackbar } from '../hoc/SnackBarHOC';
@@ -10,10 +10,6 @@ import store from '../store';
 // import Table from './Table';
 
 class HomePage extends React.Component {
-  componentDidMount() {
-    const { getUsers } = this.props;
-    getUsers();
-  }
 
   handleDeleteUser(id) {
     const { deleteUser } = this.props;
@@ -28,62 +24,37 @@ class HomePage extends React.Component {
 
   render() {
     const { user, users } = this.props;
-    const items = [
-      // {
-      //   label: 'Edit',
-      //   onClick: id => navigate(`/employee/edit/${id}`,
-      //     { state: { employeeDetails: employee.filter((_, index) => index === id), id } }),
-      // },
-      {
-        label: 'Delete',
-        onClick: id => this.handleDeleteUser(id),
-      },
-    ];
-    if (!users) {
-      return (
-        <div
-          style={{
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)'
-          }}
-        >
-          <CircularProgress />
-        </div>
-      )
-    }
-    if (user && users) {
-      const allUsers = users.filter(item => item.originalId !== user.originalId);
-      return (
-        <div className="col-md-6 col-md-offset-3">
-          <h1>
-            {`Hi ${user.name}!`}
-          </h1>
-          <p>You are logged in with React!!</p>
-          {users?.error && (
-            <span className="text-danger">
-  ERROR:
-              {users?.error}
-            </span>
-          )}
-          {/* {(user.role === 'ADMIN') && <Table data={allUsers} menuItems={items} />} */}
-          <p>
-            <Link to="/login">Logout</Link>
-          </p>
-        </div>
-      );
-    }
     return (
-      <div className="col-md-6 col-md-offset-3">
-        <h1>
-          {'Hi!'}
+      <div class="container">
+        <h1 class="row">
+                
+          TODO APP 
+               
         </h1>
-        <p>You are not logged in with React!!</p>
-        <p>
-          <Link to="/login">Logout</Link>
-        </p>
-      </div>
+        <br/><br/>
+        <div class="row">
+            <form class="form-inline col-sm-offset-3">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="glyphicon glyphicon-pencil"></i>
+                    </span>
+                    <input type="text" class="form-control"
+                           placeholder="todo-item" 
+                           id="box" style={{ width: "30vw" }} />
+                </div>
+                <div class="form-group">
+                    <input type="button"
+                           class="btn btn-primary form-control" 
+                           value="add" style={{ width: "10vw" }}
+                           onclick="add_item()" />
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <ul id="list_item">
+            </ul>
+        </div>
+    </div>
     );
   }
 }

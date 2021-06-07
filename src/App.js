@@ -1,3 +1,31 @@
+import logo from './logo.svg';
+import './App.css';
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+//         <img src={logo} className="App-logo" alt="logo" />
+//         <p>
+//           Edit <code>src/App.js</code> and save to reload.
+//         </p>
+//         <a
+//           className="App-link"
+//           href="https://reactjs.org"
+//           target="_blank"
+//           rel="noopener noreferrer"
+//         >
+//           Learn React
+//         </a>
+//       </header>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
 import React from 'react';
 import {
   BrowserRouter as Router, Route, Switch, Redirect
@@ -13,31 +41,18 @@ import { HomePage } from './components/HomePage';
 // import Alert from './components/Alert';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // history.listen((location, action) => {
-    //   // clear alert on location change
-    //   const { clearAlerts } = this.props;
-    //   clearAlerts();
-    // });
-  }
 
   render() {
       console.log('1111111111111111')
-    const { alert } = this.props;
     return (
       <div className="jumbotron">
         <div className="container">
           <div className="col-sm-8 col-sm-offset-2">
-            {alert?.message
-                            && <div className={`alert ${alert.type}`}>{alert.message}</div>
-            }
             <Router>
               <Switch>
                 {/* <Alert /> */}
-                <PrivateRoute component={HomePage} exact path="/" />
-                {/* <Route component={HomePage} exact path="/" /> */}
+                {/* <PrivateRoute component={HomePage} exact path="/" /> */}
+                <Route component={HomePage} exact path="/" />
                 {/* <Route component={LoginPage} exact path="/login" />
                 <Route component={RegisterPage} path="/register" /> */}
                 <Redirect from="*" to="/" />
@@ -59,5 +74,6 @@ const actionCreators = {
   // clearAlerts: alertActions.clear
 };
 
-const connectedApp = connect(mapState, actionCreators)(App);
-export { connectedApp as App };
+// const connectedApp = connect(mapState, actionCreators)(App);
+// export { connectedApp as App };
+export default App;
