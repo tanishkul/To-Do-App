@@ -1,9 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 import "./TodoItems.css";
 
-class TodoItems extends Component {
-  createTasks = (item) => {
-    return <li key={item.key}>
+const  TodoItems = ({ entries }) => {
+    return (
+      <ul className="theList">
+        {entries.map(item => {
+          return (
+          <li key={item.key}>
             <div className="card">
               <div className="btnDelete">
                 <button className="btn"><i class="fa fa-edit"></i></button>
@@ -14,19 +17,10 @@ class TodoItems extends Component {
                 <p>{item.text}</p>
               </div>
             </div>
-          </li>
-  }
- 
-  render() {
-    var todoEntries = this.props.entries;
-    var listItems = todoEntries.map(this.createTasks);
- 
-    return (
-      <ul className="theList">
-        {listItems}         
+          </li>)
+        })}         
       </ul>
     );
-  }
 };
 
 export default TodoItems;

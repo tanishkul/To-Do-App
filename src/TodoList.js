@@ -14,7 +14,7 @@ class TodoList extends Component {
        
       addItem = (e) => {
         e.preventDefault();
-        const { text, title, items } = this.state;
+        const { text, title } = this.state;
         if (text.length === 0){
           return;
         }
@@ -57,8 +57,8 @@ class TodoList extends Component {
     return (
       <div className="todoListMain">
         <div className="header">
-        <form onSubmit={this.addItem} className="formClass">
-        <input 
+          <form onSubmit={this.addItem} className="formClass">
+            <input 
               placeholder="Title..."
               onChange={(e) => { this.handleChange(e, 'title') }}
               value={title}
@@ -72,7 +72,7 @@ class TodoList extends Component {
           </form>
         </div>
         <div className="todoItemsHeader">
-        <TodoItems entries={items} delete={this.deleteItem}/>
+          <TodoItems entries={items} delete={this.deleteItem}/>
         </div>
       </div>
     );
