@@ -14,12 +14,13 @@ class TodoList extends Component {
        
       addItem = (e) => {
         e.preventDefault();
-        if (this.state.text.length === 0){
+        const { text, title, items } = this.state;
+        if (text.length === 0){
           return;
         }
         const newItem = {
-          title: this.state.title,
-          text: this.state.text,
+          title: title,
+          text: text,
           key: Date.now()
         }
         this.setState((prevState) => {
@@ -33,7 +34,8 @@ class TodoList extends Component {
       }
 
       deleteItem = (key) => {
-        var filteredItems = this.state.items.filter(function (item) {
+        const { items } = this.state;
+        const filteredItems = items.filter(function (item) {
           return (item.key !== key);
         });
        
@@ -51,6 +53,7 @@ class TodoList extends Component {
       }
 
   render() {
+    const { text, title, items } = this.state;
     return (
       <div className="todoListMain">
         <div className="header">
@@ -58,18 +61,18 @@ class TodoList extends Component {
         <input 
               placeholder="Title..."
               onChange={(e) => { this.handleChange(e, 'title') }}
-              value={this.state.title}
+              value={title}
             />
             <input
               placeholder="Task to do..."
               onChange={(e) => { this.handleChange(e, 'text') }}
-              value={this.state.text}
+              value={text}
             />
             <button>Add</button>
           </form>
         </div>
         <div className="todoItemsHeader">
-        <TodoItems entries={this.state.items} delete={this.deleteItem}/>
+        <TodoItems entries={items} delete={this.deleteItem}/>
         </div>
       </div>
     );
