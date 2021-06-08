@@ -1,0 +1,39 @@
+.theList .card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  display: flex;
+  color: #333;
+  background-color: rgba(255,255,255,.5);
+  padding: 15px;
+  margin: 15px;
+  border-radius: 5px;
+  list-style: none;
+  transition: background-color .2s ease-out;
+  flex-direction: column;
+  word-wrap: break-word;
+  width: 300px;
+  height: 150px;
+}
+.theList .card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  background-color: pink;
+  cursor: pointer;
+}
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+.btn:hover {
+  background-color: RoyalBlue;
+}
+.btnDelete {
+  display: flex;
+  justify-content: flex-end;
+}

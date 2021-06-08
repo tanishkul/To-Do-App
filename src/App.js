@@ -45,9 +45,9 @@ class App extends React.Component {
   render() {
       console.log('1111111111111111')
     return (
-      <div className="jumbotron">
-        <div className="container">
-          <div className="col-sm-8 col-sm-offset-2">
+      // <div className="jumbotron">
+      //   <div className="container">
+      //     <div className="col-sm-8 col-sm-offset-2">
             <Router>
               <Switch>
                 {/* <Alert /> */}
@@ -58,9 +58,9 @@ class App extends React.Component {
                 <Redirect from="*" to="/" />
               </Switch>
             </Router>
-          </div>
-        </div>
-      </div>
+      //     </div>
+      //   </div>
+      // </div>
     );
   }
 }
@@ -76,4 +76,4 @@ const actionCreators = {
 
 // const connectedApp = connect(mapState, actionCreators)(App);
 // export { connectedApp as App };
-export default App;
+export { App };
