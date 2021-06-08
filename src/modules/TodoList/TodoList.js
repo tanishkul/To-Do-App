@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card } from "../../components";
-import "./TodoList.css";
+import "./style.css";
 
 class TodoList extends Component {
     constructor(props) {

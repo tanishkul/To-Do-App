@@ -1,5 +1,5 @@
 import React from "react";
-import "./Card.css";
+import "./style.css";
 
 const  Card = ({ entries, deleteItem }) => {
     return (
