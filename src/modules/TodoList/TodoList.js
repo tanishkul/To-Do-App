@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card } from "../../components";
+import { Card, Modal, Container } from "../../components";
 import "./style.css";
 
 class TodoList extends Component {
@@ -8,7 +8,8 @@ class TodoList extends Component {
         this.state = {
             items: [],
             text: '',
-            title: ''
+            title: '',
+            isModalOpen: false,
           };
       }
 
@@ -43,6 +44,17 @@ class TodoList extends Component {
         });
       }
 
+      editItem = (key) => {
+        const { items, isModalOpen } = this.state;
+        const filteredItems = items.filter((item) => {
+          return (item.key !== key);
+        });
+        console.log('33333333333', key, isModalOpen)
+        this.setState({
+          isModalOpen: true
+        });
+      }
+
       handleChange = (e, key) => {
         if (e.target.value) {
           this.setState({
@@ -50,30 +62,40 @@ class TodoList extends Component {
           });
         }
       }
+      onSubmit = (event) => {
+        event.preventDefault(event);
+        console.log(event.target.name.value);
+        console.log(event.target.email.value);
+      };
 
   render() {
-    const { text, title, items } = this.state;
+    const { text, title, items, isModalOpen } = this.state;
+    console.log('1111111111', isModalOpen)
     return (
-      <div className="todoListMain">
-        <div className="header">
-          <form onSubmit={this.addItem} className="formClass">
-            <input 
-              placeholder="Title..."
-              onChange={(e) => { this.handleChange(e, 'title') }}
-              value={title}
-            />
-            <input
-              placeholder="Task to do..."
-              onChange={(e) => { this.handleChange(e, 'text') }}
-              value={text}
-            />
-            <button>Add</button>
-          </form>
+      <>
+       <Container triggerText={'Open Form'} onSubmit={this.onSubmit} />
+        {(isModalOpen)? <Modal isModalOpen={isModalOpen}/> : ''}
+        <div className="todoListMain">
+          <div className="header">
+            <form onSubmit={this.addItem} className="formClass">
+              <input 
+                placeholder="Title..."
+                onChange={(e) => { this.handleChange(e, 'title') }}
+                value={title}
+              />
+              <input
+                placeholder="Task to do..."
+                onChange={(e) => { this.handleChange(e, 'text') }}
+                value={text}
+              />
+              <button>Add</button>
+            </form>
+          </div>
+          <div className="todoItemsHeader">
+            <Card entries={items} deleteItem={this.deleteItem} editItem={this.editItem}/>
+          </div>
         </div>
-        <div className="todoItemsHeader">
-          <Card entries={items} deleteItem={this.deleteItem}/>
-        </div>
-      </div>
+      </>
     );
   }
 }
