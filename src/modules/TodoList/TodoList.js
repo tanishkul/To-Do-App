@@ -10,6 +10,7 @@ class TodoList extends Component {
             text: '',
             title: '',
             isModalOpen: false,
+            editableItem: [],
           };
       }
 
@@ -46,13 +47,20 @@ class TodoList extends Component {
 
       editItem = (key) => {
         const { items, isModalOpen } = this.state;
-        const filteredItems = items.filter((item) => {
-          return (item.key !== key);
+        const filteredItems = items.find((item) => {
+          return (item.key === key);
         });
         console.log('33333333333', key, isModalOpen)
         this.setState({
-          isModalOpen: true
+          isModalOpen: true,
+          editableItem: filteredItems
         });
+      }
+
+      closeModal = () => {
+        this.setState({
+          isModalOpen: false,
+        })
       }
 
       handleChange = (e, key) => {
@@ -69,12 +77,19 @@ class TodoList extends Component {
       };
 
   render() {
-    const { text, title, items, isModalOpen } = this.state;
+    const { text, title, items, isModalOpen, editableItem } = this.state;
     console.log('1111111111', isModalOpen)
     return (
       <>
-       <Container triggerText={'Open Form'} onSubmit={this.onSubmit} />
-        {(isModalOpen)? <Modal isModalOpen={isModalOpen}/> : ''}
+       {/* <Container triggerText={'Open Form'} onSubmit={this.onSubmit} /> */}
+        {/* {(isModalOpen)? <Modal isModalOpen={isModalOpen}/> : ''} */}
+        <Modal
+          title="Edit task..."
+          onClose={this.closeModal}
+          show={isModalOpen}
+          data={editableItem}
+          onSubmit={this.onSubmit}
+        />
         <div className="todoListMain">
           <div className="header">
             <form onSubmit={this.addItem} className="formClass">
