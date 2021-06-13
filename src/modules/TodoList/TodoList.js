@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Modal, Container } from "../../components";
+import { Card, Modal } from "../../components";
 import "./style.css";
 
 class TodoList extends Component {
@@ -46,11 +46,10 @@ class TodoList extends Component {
       }
 
       editItem = (key) => {
-        const { items, isModalOpen } = this.state;
+        const { items } = this.state;
         const filteredItems = items.find((item) => {
           return (item.key === key);
         });
-        console.log('33333333333', key, isModalOpen)
         this.setState({
           isModalOpen: true,
           editableItem: filteredItems
@@ -78,11 +77,9 @@ class TodoList extends Component {
 
   render() {
     const { text, title, items, isModalOpen, editableItem } = this.state;
-    console.log('1111111111', isModalOpen)
+
     return (
       <>
-       {/* <Container triggerText={'Open Form'} onSubmit={this.onSubmit} /> */}
-        {/* {(isModalOpen)? <Modal isModalOpen={isModalOpen}/> : ''} */}
         <Modal
           title="Edit task..."
           onClose={this.closeModal}

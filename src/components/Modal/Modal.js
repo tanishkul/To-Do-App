@@ -34,25 +34,25 @@ const Modal = ({ onClose, onSubmit, show, data }) => {
             <h4 className="modal-title">{title}</h4>
           </div>
           <form onSubmit={onSubmit}>
-      <div className="form-group">
-        <label htmlFor="title">Title</label>
-        <input className="form-control" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-      </div>
-      <div className="form-group">
-        <label htmlFor="text">Task</label>
-        <input
-          className="form-control"
-          id="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-      </div>
-      <div className="form-group">
-        <button className="form-control btn btn-primary" type="submit">
-          Submit
-        </button>
-      </div>
-    </form>
+            <div className="form-group">
+              <label htmlFor="title">Title</label>
+              <input className="form-control" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="text">Task</label>
+              <input
+                className="form-control"
+                id="text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <button className="form-control btn btn-primary" type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
           <div className="modal-footer">
             <button onClick={onClose} className="button">
               Close
