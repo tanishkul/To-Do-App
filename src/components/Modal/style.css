@@ -31,15 +31,26 @@
 
 .modal.enter-done .modal-content {
     transform: translateY(0);
+    background: wheat;
 }
 
 .modal.exit .modal-content {
     transform: translateY(-200px);
 }
 
-.modal-header,
+.modal-header{
+    font-size: larger;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
 .modal-footer {
-    padding: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
 }
 
 .modal-title {
@@ -50,4 +61,58 @@
     padding: 10px;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
+}
+
+.modal-group {
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+
+.modal-group-warning {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button-primary {
+    display: flex;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px;
+    margin-right: 0px;
+    background-color: #0066FF;
+    color: #FFF;
+    border: 2px solid #0066FF;
+    justify-content: space-between;
+}
+
+.button-primary:hover {
+    background-color: #003399;
+    border: 2px solid #003399;
+    cursor: pointer;
+}
+
+.button {
+    display: flex;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px;
+    margin-right: 0px;
+    background-color: #cbcccf;
+    color: rgb(0, 0, 0);
+    border: 2px solid #cbcccf;
+    justify-content: space-between;
+}
+
+.button:hover {
+    background-color: #b5bac2;
+    border: 2px solid #b5bac2;
+    cursor: pointer;
+}
+
+.warning-text{
+    color: red;
+    font-style: italic;
+    font-size: small;
 }

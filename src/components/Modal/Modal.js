@@ -4,23 +4,25 @@ import { CSSTransition } from "react-transition-group";
 import "./style.css";
 
 const Modal = ({ onClose, onSubmit, show, data }) => {
-  const { title: oldTitle, text: oldText, key } = data;
-  const [title, setTitle] = useState(oldTitle);
-  const [text, setText] = useState(oldText);
-  console.log('vallllllllll', title, text, data, oldText, oldTitle);
-
-  const closeOnEscapeKeyDown = e => {
-    if ((e.charCode || e.keyCode) === 27) {
-      onClose();
-    }
-  };
+  const [title, setTitle] = useState();
+  const [text, setText] = useState();
+  const [key, setKey] = useState();
+  const [hasError, setError] = useState(false);
 
   useEffect(() => {
-    document.body.addEventListener("keydown", closeOnEscapeKeyDown);
-    return function cleanup() {
-      document.body.removeEventListener("keydown", closeOnEscapeKeyDown);
-    };
-  }, []);
+    const { title, text, key } = data;
+    setText(text);
+    setTitle(title);
+    setKey(key);
+  }, [data]);
+
+  if(!hasError && text === "") {
+    setError(true);
+  }
+
+  if(hasError && text !== "") {
+    setError(false);
+  }
 
   return ReactDOM.createPortal(
     <CSSTransition
@@ -31,31 +33,37 @@ const Modal = ({ onClose, onSubmit, show, data }) => {
       <div className="modal" onClick={onClose}>
         <div className="modal-content" onClick={e => e.stopPropagation()}>
           <div className="modal-header">
-            <h4 className="modal-title">{title}</h4>
+            <h4 className="modal-title">Edit Task...</h4>
           </div>
-          <form onSubmit={onSubmit}>
-            <div className="form-group">
+            <div className="modal-group">
               <label htmlFor="title">Title</label>
-              <input className="form-control" id="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+              <input
+                className="modal-control"
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
             </div>
-            <div className="form-group">
+            <div className="modal-group">
               <label htmlFor="text">Task</label>
               <input
-                className="form-control"
+                className="modal-control"
                 id="text"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
             </div>
-            <div className="form-group">
-              <button className="form-control btn btn-primary" type="submit">
-                Submit
-              </button>
-            </div>
-          </form>
+            {hasError &&
+              <div className="modal-group-warning">
+                <p className="warning-text">Task is required!</p>
+              </div>
+            }
           <div className="modal-footer">
             <button onClick={onClose} className="button">
               Close
+            </button>
+            <button className="button-primary" onClick={() => onSubmit({title, text, key})}>
+              Submit
             </button>
           </div>
         </div>

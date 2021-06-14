@@ -10,7 +10,7 @@ class TodoList extends Component {
             text: '',
             title: '',
             isModalOpen: false,
-            editableItem: [],
+            editableItem: {},
           };
       }
 
@@ -69,10 +69,18 @@ class TodoList extends Component {
           });
         }
       }
-      onSubmit = (event) => {
-        event.preventDefault(event);
-        console.log(event.target.name.value);
-        console.log(event.target.email.value);
+
+      onSubmit  = (data) => {
+        const { title, text, key } = data;
+        const { items } = this.state;
+        const updatedItems = [...items];
+        const objIndex = updatedItems.findIndex((obj => obj.key === key));
+        updatedItems[objIndex].title = title;
+        updatedItems[objIndex].text = text;
+        this.setState({
+          isModalOpen: false,
+          items: updatedItems
+        });
       };
 
   render() {
@@ -81,7 +89,6 @@ class TodoList extends Component {
     return (
       <>
         <Modal
-          title="Edit task..."
           onClose={this.closeModal}
           show={isModalOpen}
           data={editableItem}
